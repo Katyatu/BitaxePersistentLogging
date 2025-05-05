@@ -27,15 +27,14 @@ BPL is a simple Node.js Express server that:
 
 ## Prerequisites
 
-- Node.js - to run the server
-- npm - to install server package dependencies
+- Node.js + npm - to run the server and install server package dependencies
 - jq - to parse JSON objects
 - gnuplot - to plot the .csv data points
 - montage - to combine all graphs into one image
 - screen - to run the server detached from terminals
 
 ```bash
-sudo apt install node npm jq gnuplot montage screen
+sudo apt install npm jq gnuplot montage screen
 ```
 
 ## Installation
