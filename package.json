@@ -1,0 +1,27 @@
+{
+  "name": "bitaxepersistentlogging",
+  "version": "1.0.0",
+  "description": "Automatic Bitaxe statistics logging and status snapshotting.",
+  "main": "app.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Katyatu/BitaxePersistentLogging.git"
+  },
+  "keywords": [
+    "bitaxe",
+    "persistent",
+    "logging",
+    "statistic",
+    "snapshot"
+  ],
+  "author": "Katyatu Foixewesfv",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Katyatu/BitaxePersistentLogging/issues"
+  },
+  "homepage": "https://github.com/Katyatu/BitaxePersistentLogging#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
