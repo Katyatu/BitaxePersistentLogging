@@ -55,7 +55,7 @@ sudo apt install node npm jq gnuplot montage screen
 
 1. Starting the server: `screen -S BPL node app.js` to start, then `CTRL+A, D` to detach
 2. Accessing the server: `http://<serverLocalIP>:<serverPort>` (defined in `config.json`).
-3. Stopping the server: `screen -r bitaxe` to reattach, and `CTRL+C` to gracefully stop
+3. Stopping the server: `screen -r BPL` to reattach, and `CTRL+C` to gracefully stop
 
 Note: Make sure your working directory is in the project root.
 
