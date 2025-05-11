@@ -1,15 +1,11 @@
 #!/bin/bash
 
 bitaxeLocalIP=$(cat ./config.json | jq .bitaxeLocalIP | tr -d '"')
+bitaxeName=$(cat ./config.json | jq .bitaxeName | tr -d '"')
 
 # Graceful exit
 handle_sigterm() {
-  echo "Caught SIGTERM! Cleaning up..."
-  rm /tmp/BPL/BPL-Snapshot.png
-  rm /tmp/BPL/BPL-Logging.csv
-  rm /tmp/BPL/gnuploterrors.log
-  rm /tmp/BPL/montageerrors.log
-  rmdir /tmp/BPL
+  echo "Caught SIGTERM!"
   exit 0
 }
 
@@ -63,7 +59,7 @@ checkdeps
 
 mkdir -p /tmp/BPL
 
-echo "Uptime (s),Power (W),Core Voltage (mV),Input Voltage (mV),Current (mA),ASIC Temp (C),VR Temp (C),Hashrate (GH/s),Accepted Shares,Rejected Shares,Best Difficulty,Best Session Difficulty,Stratum Difficulty" > /tmp/BPL/BPL-Logging.csv
+echo "Uptime (s),Power (W),Core Voltage (mV),Input Voltage (mV),Current (mA),ASIC Temp (C),VR Temp (C),Hashrate (GH/s),Accepted Shares,Rejected Shares,Best Difficulty,Best Session Difficulty,Stratum Difficulty" > /tmp/BPL/BPL-$bitaxeName-Logging.csv
 
 curl -X POST "$bitaxeLocalIP/api/system/restart";
 
@@ -73,7 +69,6 @@ while true
 do
 
   resp=$(curl -s -X GET "$bitaxeLocalIP/api/system/info")
-  #echo $resp
 
   uptime=$(echo $resp | jq .uptimeSeconds)
   power=$(echo $resp | jq .power)
@@ -89,7 +84,7 @@ do
   bestSessionDiff=$(convert_abbrev_number $(echo $resp | jq .bestSessionDiff | tr -d '"'))
   stratumDiff=$(convert_abbrev_number $(echo $resp | jq .stratumDiff | tr -d '"'))
 
-  echo "$uptime,$power,$coreVolt,$inputVolt,$current,$temp,$vrTemp,$hashrate,$sharesAccepted,$sharesRejected,$bestDiff,$bestSessionDiff,$stratumDiff" >> /tmp/BPL/BPL-Logging.csv
+  echo "$uptime,$power,$coreVolt,$inputVolt,$current,$temp,$vrTemp,$hashrate,$sharesAccepted,$sharesRejected,$bestDiff,$bestSessionDiff,$stratumDiff" >> /tmp/BPL/BPL-$bitaxeName-Logging.csv
 
   sleep 5
 

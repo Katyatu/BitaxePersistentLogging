@@ -1,7 +1,9 @@
 #!/bin/bash
 
+bitaxeName=$(cat ./config.json | jq .bitaxeName | tr -d '"')
+
 # Input CSV file
-CSVFILE="/tmp/BPL/BPL-Logging.csv"
+CSVFILE="/tmp/BPL/BPL-$bitaxeName-Logging.csv"
 
 # Output directory
 OUTPUTDIR="/tmp/BPL"
@@ -82,7 +84,7 @@ if [[ ${#PLOTFILES[@]} -gt 0 ]]; then
     COLS=$(echo "sqrt($NUMIMAGES) + 0.5" | bc -l | awk '{print int($1)}')
     [[ $COLS -eq 0 ]] && COLS=1
     ROWS=$(( (NUMIMAGES + COLS - 1) / COLS ))
-    OUTPUTFILENAME=BPL-Snapshot.png
+    OUTPUTFILENAME=BPL-$bitaxeName-Snapshot.png
     echo "Combining $NUMIMAGES plots into $OUTPUTFILENAME" >&2
 
     montage "${PLOTFILES[@]}" -tile ${COLS}x${ROWS} -background \#192730 -geometry 800x600+3+3 "$OUTPUTDIR/$OUTPUTFILENAME" 2>$OUTPUTDIR/montageerrors.log

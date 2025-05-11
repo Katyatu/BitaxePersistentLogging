@@ -17,8 +17,9 @@ try {
 const app = express();
 const PORT = config.serverPort;
 const HOST = config.serverLocalIP;
+const bitaxeName = config.bitaxeName;
 const SNAPSHOT_SCRIPT_PATH = path.join(__dirname, "BPL-Snapshot.sh");
-const SNAPSHOT_PNG_PATH = path.join("/tmp/BPL/BPL-Snapshot.png");
+const SNAPSHOT_PNG_PATH = path.join(`/tmp/BPL/BPL-${bitaxeName}-Snapshot.png`);
 const LOGGING_SCRIPT_PATH = path.join(__dirname, "BPL-Logging.sh");
 
 // Start logging script as a detached process
