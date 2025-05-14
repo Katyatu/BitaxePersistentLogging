@@ -23,7 +23,7 @@ BPL is a simple Node.js Express server that:
 
 </details>
 
-## $\color{#F80421}{Table\ of\ Contents}$
+## Table of Contents
 
 - [Features](#features)
 - [Prerequisites](#prerequisites)
@@ -34,13 +34,13 @@ BPL is a simple Node.js Express server that:
 - [Data Logging Retention](#data-logging-retention)
 - [License](#license)
 
-## $\color{#F80421}{Features}$
+## Features
 
 - All stats since boot are logged every 5 seconds, regardless if you are interacting with your Bitaxe or not
 - When you wish to see how your Bitaxe has been performing, you just access this server and it will return a snapshot of various graphed stats
 - It's as simple as running `node app.js` and letting it do its work. No manual intervention needed besides starting/stopping the server.
 
-## $\color{#F80421}{Prerequisites}$
+## Prerequisites
 
 ### Recommended Hardware
 
@@ -66,7 +66,7 @@ BPL is a simple Node.js Express server that:
 sudo apt install npm jq gnuplot montage screen
 ```
 
-## $\color{#F80421}{Installation}$
+## Installation
 
 1. Clone the repository:
    ```bash
@@ -83,7 +83,7 @@ sudo apt install npm jq gnuplot montage screen
    nano config.json
    ```
 
-## $\color{#F80421}{Usage}$
+## Usage
 
 1. Starting the server: `screen -S BPL node app.js` to start, then `CTRL+A, D` to detach
 2. Accessing the server: `http://<serverLocalIP>:<serverPort>` (defined in `config.json`).
@@ -91,7 +91,7 @@ sudo apt install npm jq gnuplot montage screen
 
 Note: Make sure your working directory is in the project root, and wait at least 10 seconds after starting the server before requesting a snapshot.
 
-## $\color{#F80421}{Configuration}$
+## Configuration
 
 The server reads settings from `config.json` in the project root. Example:
 
@@ -106,7 +106,7 @@ The server reads settings from `config.json` in the project root. Example:
 
 - Copy `config.example.json` to `config.json` and update values as needed.
 
-## $\color{#F80421}{Multi-Bitaxe\ Monitoring}$
+## Multi-Bitaxe Monitoring
 
 If you have more than one Bitaxe you want to monitor with BPL, you will need to do the following:
 
@@ -118,10 +118,10 @@ If you have more than one Bitaxe you want to monitor with BPL, you will need to 
    - Set a unique "bitaxeName" to keep instance data logging from merging with each other
 3. If using the `screen -S BPL node app.js` command, change "BPL" to a unique name. ie. `screen -S BPL-1 node app.js` `screen -S BPL-2 node app.js` etc.
 
-## $\color{#F80421}{Data\ Logging\ Retention}$
+## Data Logging Retention
 
 BPL logging and snapshots are temporarily stored at `/tmp/BPL/`, are overwritten at BPL start, and do not survive system reboots. The scope of persistence only spans from the point of Bitaxe boot to the time you stop BPL and reboot/shutdown your machine. BPL is only designed for monitoring the current boot cycle, not long-term monitoring of multiple boot cycles. If you wish to keep any logged data after stopping BPL, copy/move the .csv files out of memory and into storage before rebooting/shutting down your machine.
 
-## $\color{#F80421}{License}$
+## License
 
 See [LICENSE](LICENSE) for details.
